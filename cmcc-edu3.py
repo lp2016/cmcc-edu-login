@@ -4,16 +4,17 @@ from __future__ import unicode_literals
 import sys, json, re
 import urllib.request
 import ssl
-baidu = 'http://www.baidu.com'
+baidu = 'http://www.soso.com'
 # change this to file you want to save login info
 info_file = 'cmcc_info.json'
 username = 'phone'
 password = 'password'
 
-def get_info(site=baidu):
-    https_sslv3_handler = urllib.request.HTTPSHandler(context=ssl.SSLContext(ssl.PROTOCOL_SSLv3))
-    opener = urllib.request.build_opener(https_sslv3_handler)
-    urllib.request.install_opener(opener)
+def get_info(site=baidu,sslv3=False):
+    if sslv3:
+        https_sslv3_handler = urllib.request.HTTPSHandler(context=ssl.SSLContext(ssl.PROTOCOL_SSLv3))
+        opener = urllib.request.build_opener(https_sslv3_handler)
+        urllib.request.install_opener(opener)
     request = urllib.request.urlopen(baidu)
     url = request.geturl()                   # get redirect url
     if url == site:

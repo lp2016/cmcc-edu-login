@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 import urllib, urllib2, sys, json, re
 mishi='example1mdhcispr'
-baidu = 'http://www.baidu.com'
+baidu = 'http://www.soso.com'
 # change this to file you want to save login info
 info_file = 'cmcc_info.json'
 import sys,os

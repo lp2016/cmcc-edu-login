@@ -13,12 +13,12 @@ from kivy.resources import resource_find
 frot=resource_find("DroidSansFallback.ttf")
 from kivy.uix.label import Label
 from kivy.uix.popup  import Popup
-baidu = 'http://www.baidu.com'
+baidu = 'http://www.soso.com'
 info_file = 'cmcc_info.json'
 def printa(str):
     Popup(title='cmccedu', content=Label(text=str,font_name=frot),size_hint=(None, None), size=(200, 300)).open()
 
-def get_info(username,password):
+def get_info(username,password,sslv3=False):
     baidu = 'http://www.baidu.com'
     save = {
         'username': username,
@@ -26,9 +26,10 @@ def get_info(username,password):
     }
     with open('save', 'w') as f:
         dump(save, f)
-    https_sslv3_handler = request.HTTPSHandler(context=ssl.SSLContext(ssl.PROTOCOL_SSLv3))
-    opener = request.build_opener(https_sslv3_handler)
-    request.install_opener(opener)
+    if sslv3:
+        https_sslv3_handler = request.HTTPSHandler(context=ssl.SSLContext(ssl.PROTOCOL_SSLv3))
+        opener = request.build_opener(https_sslv3_handler)
+        request.install_opener(opener)
     requesto = request.urlopen(baidu)
     url = requesto.geturl()                   # get redirect url
     if url == baidu:
