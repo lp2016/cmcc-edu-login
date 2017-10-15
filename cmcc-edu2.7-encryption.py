@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 import urllib, urllib2, sys, json, re
 mishi='example1mdhcispr'
-baidu = 'http://www.soso.com'
+testurl = 'http://www.speedtest.net'
 # change this to file you want to save login info
 info_file = 'cmcc_info.json'
 import sys,os
@@ -58,8 +58,8 @@ def jiemi():
         return [username,password]
     else:
         raise ValueError("invavid id")
-def get_info(site=baidu):
-    request = urllib2.urlopen(baidu)
+def get_info(site=testurl):
+    request = urllib2.urlopen(site)
     url = request.url                   # get redirect url
     if url == site:
         domain = ''

@@ -13,13 +13,12 @@ from kivy.resources import resource_find
 frot=resource_find("DroidSansFallback.ttf")
 from kivy.uix.label import Label
 from kivy.uix.popup  import Popup
-baidu = 'http://www.soso.com'
+testurl = 'http://www.speedtest.net'
 info_file = 'cmcc_info.json'
 def printa(str):
     Popup(title='cmccedu', content=Label(text=str,font_name=frot),size_hint=(None, None), size=(200, 300)).open()
 
 def get_info(username,password,sslv3=False):
-    baidu = 'http://www.baidu.com'
     save = {
         'username': username,
         'password': password
@@ -30,9 +29,9 @@ def get_info(username,password,sslv3=False):
         https_sslv3_handler = request.HTTPSHandler(context=ssl.SSLContext(ssl.PROTOCOL_SSLv3))
         opener = request.build_opener(https_sslv3_handler)
         request.install_opener(opener)
-    requesto = request.urlopen(baidu)
+    requesto = request.urlopen(testurl)
     url = requesto.geturl()                   # get redirect url
-    if url == baidu:
+    if url == testurl:
         domain = ''
         login_info = {}
         printa (u'已经连网，不用再登录了:-)')
